@@ -33,4 +33,12 @@ public class PublisherRestController {
         publisher.publishTopic(message.getMessage());
         return new ResponseEntity<>("POST Response", HttpStatus.OK);
     }
+
+    @PostMapping(value = "/addToDurableTopic", consumes = {APPLICATION_JSON_VALUE})
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> addToDurableTopic(@RequestBody PublishRequest message) {
+        log.info("Publish a message to durable topic {}", message.getMessage());
+        publisher.publishDurableTopic(message.getMessage());
+        return new ResponseEntity<>("POST Response", HttpStatus.OK);
+    }
 }

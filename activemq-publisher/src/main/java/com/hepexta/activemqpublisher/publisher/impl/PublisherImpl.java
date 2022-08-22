@@ -24,14 +24,21 @@ public class PublisherImpl implements Publisher {
     @Value("${service.activemq.topicName}")
     private String topicName;
 
+    @Value("${service.activemq.durableTopicName}")
+    private String durableTopicName;
+
     @Override
     public void publishQueue(String message) {
         queueTemplate.convertAndSend(queueName, message);
-        queueTemplate.convertAndSend("durable-queue", message);
     }
 
     @Override
     public void publishTopic(String message) {
         topicJmsTemplate.convertAndSend(topicName, message);
+    }
+
+    @Override
+    public void publishDurableTopic(String message) {
+        topicJmsTemplate.convertAndSend(durableTopicName, message);
     }
 }
