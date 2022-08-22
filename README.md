@@ -3,6 +3,8 @@ Messaging Parent
 # Sample contains two modules:
 - activemq-publisher
 - activemq-subscriber
+- activemq-durable-subscriber
+- activemq-request-reply
 
 The sample is dedicated to ;show an example of working with ActiveMQ.
 
@@ -24,6 +26,10 @@ I. Implement publish/subscribe interaction between two applications. Check durab
 
 II. Implement request-reply interaction between two applications using a temporary queue in ActiveMQ.
 
+Module activemq-request-reply has an example of request-reply pattern.
+The message is generating inside the main method. And the Receiver class is replying on it.
+
+`java -Dserver.port=8085 -jar activemq-request-reply-1.0-SNAPSHOT.jar`
 
 III. Implement subscriber scaling, i.e. create n subscribers to a topic with the same ClientID (see Virtual Topics in ActiveMQ)
 
