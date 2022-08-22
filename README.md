@@ -21,8 +21,11 @@ I. Implement publish/subscribe interaction between two applications. Check durab
 `java -Dserver.port=8083 -jar activemq-durable-subscriber-1.0-SNAPSHOT.jar`
 
 `POST http://localhost:8081/messages/addToQueue {"message": "hello world"}`
+
 `POST http://localhost:8081/messages/addToTopic {"message": "hello world"}`
+
 `POST http://localhost:8081/messages/addToDurableTopic {"message": "hello world"}`
+
 
 II. Implement request-reply interaction between two applications using a temporary queue in ActiveMQ.
 
