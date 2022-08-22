@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.jms.connection.SingleConnectionFactory;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;
 
 import javax.jms.ConnectionFactory;
@@ -21,7 +22,7 @@ public class JMSConfiguration {
     @Value("${spring.activemq.password}")
     private String password;
 
-    public ConnectionFactory activeMQConnectionFactory() {
+    public ActiveMQConnectionFactory activeMQConnectionFactory() {
         ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
         activeMQConnectionFactory.setBrokerURL(brokerUrl);
         activeMQConnectionFactory.setUserName(user);
@@ -37,10 +38,21 @@ public class JMSConfiguration {
     }
 
     @Bean
-    public JmsListenerContainerFactory<DefaultMessageListenerContainer> topicListenerContainerFactory(DefaultJmsListenerContainerFactoryConfigurer configurer) {
-        DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-        factory.setPubSubDomain(true);
-        configurer.configure(factory, activeMQConnectionFactory());
-        return factory;
+    public JmsListenerContainerFactory<DefaultMessageListenerContainer> queueDurableContainerFactory(SingleConnectionFactory factory, DefaultJmsListenerContainerFactoryConfigurer configurer) {
+        DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
+        containerFactory.setSubscriptionDurable(true);
+        containerFactory.setClientId("clientId");
+        factory.setClientId("clientId");
+        containerFactory.setConnectionFactory(factory);
+        configurer.configure(containerFactory, factory);
+        return containerFactory;
+    }
+
+    @Bean
+    public JmsListenerContainerFactory topicListenerContainerFactory() {
+        DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
+        containerFactory.setPubSubDomain(true);
+        containerFactory.setConnectionFactory(activeMQConnectionFactory());
+        return containerFactory;
     }
 }

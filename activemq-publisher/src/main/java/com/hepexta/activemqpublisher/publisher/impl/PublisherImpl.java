@@ -27,6 +27,7 @@ public class PublisherImpl implements Publisher {
     @Override
     public void publishQueue(String message) {
         queueTemplate.convertAndSend(queueName, message);
+        queueTemplate.convertAndSend("durable-queue", message);
     }
 
     @Override
