@@ -11,3 +11,4 @@ service:
   activemq:
     queueName: first-queue
     topicName: first-topic
+    durableTopicName: durable-topic

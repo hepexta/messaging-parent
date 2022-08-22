@@ -18,11 +18,11 @@ public class JMSConfiguration {
 
     @Bean
     public ActiveMQConnectionFactory activeMQConnectionFactory() {
-        ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
-        activeMQConnectionFactory.setBrokerURL(brokerUrl);
-        activeMQConnectionFactory.setUserName(user);
-        activeMQConnectionFactory.setPassword(password);
-        return activeMQConnectionFactory;
+        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
+        connectionFactory.setBrokerURL(brokerUrl);
+        connectionFactory.setUserName(user);
+        connectionFactory.setPassword(password);
+        return connectionFactory;
     }
 
     @Bean("queueJmsTemplate")

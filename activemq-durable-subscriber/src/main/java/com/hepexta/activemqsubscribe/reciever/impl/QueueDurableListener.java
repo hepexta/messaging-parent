@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class QueueDurableListener implements Listener {
 
-    @JmsListener(destination = "${service.activemq.durableQueueName}", containerFactory = "queueDurableContainerFactory")
+    @JmsListener(destination = "${service.activemq.durableQueueName}", containerFactory = "queueContainerFactory")
     public void listen(String message) {
         log.info("QueueDurableListener reads a message from Queue: {}", message);
     }

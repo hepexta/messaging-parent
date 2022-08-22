@@ -29,6 +29,7 @@
   <modules>
     <module>activemq-publisher</module>
     <module>activemq-subscriber</module>
+    <module>activemq-durable-subscriber</module>
   </modules>
 
 </project>
