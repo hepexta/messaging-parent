@@ -48,4 +48,17 @@ Run two subscribers
 
 Post a message to the topic
 
+`POST http://localhost:8081/messages/addToQueue {"message": "hello world 1"}`
+
+`POST http://localhost:8081/messages/addToQueue {"message": "hello world 2"}`
+
+`POST http://localhost:8081/messages/addToQueue {"message": "hello world 3"}`
+
+`POST http://localhost:8081/messages/addToQueue {"message": "hello world 4"}`
+
 `POST http://localhost:8081/messages/addToTopic {"message": "hello world"}`
+
+Messages for queue consumed in Round Robin, messages for topic consumed by both instances.
+
+![instance 1.PNG](instance 1.PNG)
+![instance 2.PNG](instance 2.PNG)
