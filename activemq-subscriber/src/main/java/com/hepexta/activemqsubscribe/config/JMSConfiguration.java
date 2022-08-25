@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.jms.connection.SingleConnectionFactory;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;
 
 import javax.jms.ConnectionFactory;
@@ -41,6 +42,15 @@ public class JMSConfiguration {
         DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
         containerFactory.setPubSubDomain(true);
         containerFactory.setConnectionFactory(activeMQConnectionFactory());
+        return containerFactory;
+    }
+
+    @Bean
+    public JmsListenerContainerFactory<DefaultMessageListenerContainer> virtualTopicContainerFactory(SingleConnectionFactory factory, DefaultJmsListenerContainerFactoryConfigurer configurer) {
+        DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
+        containerFactory.setPubSubDomain(true);
+        containerFactory.setConnectionFactory(factory);
+        configurer.configure(containerFactory, factory);
         return containerFactory;
     }
 }

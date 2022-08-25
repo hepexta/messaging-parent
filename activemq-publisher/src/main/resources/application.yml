@@ -12,3 +12,4 @@ service:
     queueName: first-queue
     topicName: first-topic
     durableTopicName: durable-topic
+    virtualTopicName: VirtualTopic.orders

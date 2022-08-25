@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8086
 
 spring:
   activemq:
@@ -11,3 +11,5 @@ service:
   activemq:
     queueName: first-queue
     topicName: first-topic
+    virtualTopicName1: Consumer.1.VirtualTopic.orders
+    virtualTopicName2: Consumer.2.VirtualTopic.orders

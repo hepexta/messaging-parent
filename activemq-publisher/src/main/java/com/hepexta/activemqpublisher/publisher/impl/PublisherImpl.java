@@ -27,6 +27,9 @@ public class PublisherImpl implements Publisher {
     @Value("${service.activemq.durableTopicName}")
     private String durableTopicName;
 
+    @Value("${service.activemq.virtualTopicName}")
+    private String virtualTopicName;
+
     @Override
     public void publishQueue(String message) {
         queueTemplate.convertAndSend(queueName, message);
@@ -40,5 +43,10 @@ public class PublisherImpl implements Publisher {
     @Override
     public void publishDurableTopic(String message) {
         topicJmsTemplate.convertAndSend(durableTopicName, message);
+    }
+
+    @Override
+    public void publishVirtualTopic(String message) {
+        topicJmsTemplate.convertAndSend(virtualTopicName, message);
     }
 }

@@ -56,7 +56,11 @@ Post a message to the topic
 
 `POST http://localhost:8081/messages/addToQueue {"message": "hello world 4"}`
 
-`POST http://localhost:8081/messages/addToTopic {"message": "hello world"}`
+`POST http://localhost:8081/messages/addToTopic {"message": "hello world topic"}`
+
+`POST http://localhost:8081/messages/addToVirtualTopic {"message": "hello world virtual topic 1"}`
+
+`POST http://localhost:8081/messages/addToVirtualTopic {"message": "hello world virtual topic 2"}`
 
 Messages for queue consumed in Round Robin, messages for topic consumed by both instances.
 

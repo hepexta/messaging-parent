@@ -41,4 +41,12 @@ public class PublisherRestController {
         publisher.publishDurableTopic(message.getMessage());
         return new ResponseEntity<>("POST Response", HttpStatus.OK);
     }
+
+    @PostMapping(value = "/addToVirtualTopic", consumes = {APPLICATION_JSON_VALUE})
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> addToVirtualTopic(@RequestBody PublishRequest message) {
+        log.info("Publish a message to virtual topic {}", message.getMessage());
+        publisher.publishVirtualTopic(message.getMessage());
+        return new ResponseEntity<>("POST Response", HttpStatus.OK);
+    }
 }
