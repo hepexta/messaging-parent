@@ -64,5 +64,5 @@ Post a message to the topic
 
 Messages for queue consumed in Round Robin, messages for topic consumed by both instances.
 
-![instance 1.PNG](instance 1.PNG)
-![instance 2.PNG](instance 2.PNG)
+![instance&nbsp;1.PNG](instance&nbsp;1.PNG)
+![instance&nbsp;2.PNG](instance&nbsp;2.PNG)
